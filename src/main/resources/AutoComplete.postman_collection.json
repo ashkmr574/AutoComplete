@@ -1,0 +1,32 @@
+{
+	"info": {
+		"_postman_id": "da7c2710-0455-43e1-85a6-7a80f046128a",
+		"name": "AutoComplete",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9090/search",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "au "
+				},
+				"url": {
+					"raw": "http://localhost:9090/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"search"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

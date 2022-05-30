@@ -38,7 +38,7 @@ public class NameSearchService  implements SearchService {
     @Override
     public SearchResult search(String name) {
         validate(name);
-        List<String> searchResponse = names.searchNames(name.trim());
+        List<String> searchResponse = names.searchNamesIgnoreCase(name.trim());
         SearchResult result = new SearchResult();
         result.setNames(searchResponse);
 

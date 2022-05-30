@@ -50,6 +50,20 @@ public final class Trie {
         return names;
     }
 
+    public List<String> searchNamesIgnoreCase(String prefix) {
+        List<String> names = new ArrayList<>();
+        Map<String, Node> prefixNodesMap = new HashMap<>();
+        searchIgnoreCase(prefix, 0, "", rootNode, prefixNodesMap);
+
+        for (Map.Entry<String, Node> element : prefixNodesMap.entrySet()) {
+            String prefixSoFar = element.getKey();
+            Node curNode = element.getValue();
+            searchAllMatchingNames(curNode, names, prefixSoFar);
+        }
+
+        return names;
+    }
+
     private Node search(String word) {
         Node currentNode = rootNode;
 
@@ -66,6 +80,30 @@ public final class Trie {
         }
 
         return currentNode;
+    }
+
+    private void searchIgnoreCase(String word, int index, String prefix, Node curNode, Map<String, Node> nodesMap) {
+        if(index >= word.length()) {
+            nodesMap.put(prefix, curNode);
+            return;
+        }
+
+        char currentChar = word.charAt(index);
+        char lowerChar = Character.toLowerCase(currentChar);
+
+        Node node = curNode.successors.get(lowerChar);
+
+        if (node != null) {
+            searchIgnoreCase(word, index + 1, prefix + lowerChar, node, nodesMap);
+        }
+
+        char upperChar = Character.toUpperCase(currentChar);
+
+        node = curNode.successors.get(upperChar);
+
+        if (node != null) {
+            searchIgnoreCase(word, index + 1, prefix + upperChar, node, nodesMap);
+        }
     }
 
     private void searchAllMatchingNames(Node node, List<String> names, String curName) {

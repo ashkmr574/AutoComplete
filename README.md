@@ -9,3 +9,4 @@ the search string in request body as plain/text to get the result.
 * Dockerfile is added, so you can run application in docker container.
 * command to build the application : **mvn clean install**
 * command to run in docker container : **docker run -p 9090:9090 ashkmr574/auto-complete**
+* postman collection for this POST request is also present in resources folder.
